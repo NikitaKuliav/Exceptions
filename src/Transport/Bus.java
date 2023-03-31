@@ -8,8 +8,10 @@ public class Bus extends Transport<DriverD> {
                double engineVolume,
                DriverD driver,
                Size size,
-               Type type) {
-        super(brand, model, engineVolume, driver);
+               Type type,
+               int gasTankBar,
+               int oilTankBar) {
+        super(brand, model, engineVolume, driver, gasTankBar, oilTankBar);
         setSize(size);
     }
 
@@ -23,16 +25,19 @@ public class Bus extends Transport<DriverD> {
     @Override
     public void startMove() {
         System.out.println("Автобус марки " + getBrand() + " начал двигаться ");
+        decreaseGasAndOil(15, 15);
     }
 
     @Override
     public void finishMove() {
         System.out.println("Автобус марки " + getBrand() + " закончил двигаться ");
+        decreaseGasAndOil(15, 15);
     }
 
     @Override
     public void pitStop() {
         System.out.println("Пит-стоп у автобуса");
+        decreaseGasAndOil(15,15);
     }
 
     @Override
