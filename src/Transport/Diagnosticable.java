@@ -1,5 +1,5 @@
 package Transport;
 
-public interface Diagnosticable{
+public interface Diagnosticable {
     void passDiagnostic() throws DiagnosticNotAllowedException;
 }

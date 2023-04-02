@@ -76,15 +76,12 @@ public class Bus extends Transport<DriverD> implements Diagnosticable {
     }
 
     @Override
-    public void passDiagnostic() {
+    public void passDiagnostic() throws DiagnosticNotAllowedException {
         Random rnd = new Random();
         int r = rnd.nextInt(100);
-        try {
-            if (r <= 10) {
-                throw new DiagnosticNotAllowedException();
-            } else System.out.println("Диагностика пройдена успешно");
-        } catch (DiagnosticNotAllowedException e) {
-            e.printStackTrace();
-        }
+        if (r <= 10) {
+            throw new DiagnosticNotAllowedException();
+        } else System.out.println("Диагностика пройдена успешно");
+
     }
 }

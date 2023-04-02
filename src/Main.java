@@ -56,12 +56,19 @@ public class Main {
                 11,
                 11);
 //        Auto audi = new Auto("audi", "a8", 2.0, new DriverB("Alex", true, 7), null, Type.CAR);
-//        mercedes.turnOnEngine(mercedes);
-//        System.out.println(mercedes.getGasTankBar());
-//        mercedes.startMove();
-//        mercedes.startMove();
-//        mercedes.startMove();
-//        mercedes.turnOnEngine(mercedes);
+        mercedes.turnOnEngine(mercedes);
+        System.out.println(mercedes.getGasTankBar());
+        mercedes.startMove();
+        mercedes.startMove();
+        mercedes.startMove();
+
+        try {
+            mercedes.turnOnEngine(mercedes);
+        } catch (EmptyGasTankException e) {
+            e.causeOfFailure(mercedes);
+        } catch (NoOilException e) {
+            e.causeOfFailure(mercedes);
+        }
 
 //        mercedes.addGas(100);
 //        System.out.println(mercedes.getGasTankBar());
@@ -86,7 +93,11 @@ public class Main {
 //          ikarus.turnOnEngine(ikarus);
 //          ikarus.setOilTankBar(200);
 //          System.out.println(ikarus.getOilTankBar());
+        try {
             ikarus.passDiagnostic();
+        } catch (DiagnosticNotAllowedException e) {
+            e.printStackTrace();
+        }
 
 //          ikarus.printType();
 
