@@ -1,6 +1,6 @@
 package Transport;
 
-public class Truck extends Transport<DriverC> {
+public class Truck extends Transport<DriverC> implements Diagnosticable {
     private LoadCapacity loadCapacity;
     private Type type;
     public Truck(String brand,
@@ -8,8 +8,10 @@ public class Truck extends Transport<DriverC> {
                  double engineVolume,
                  DriverC driver,
                  LoadCapacity loadCapacity,
-                 Type type) {
-        super(brand, model, engineVolume, driver);
+                 Type type,
+                 int gasTankBar,
+                 int oilTankBar) {
+        super(brand, model, engineVolume, driver, gasTankBar, oilTankBar);
         setLoadCapacity(loadCapacity);
     }
 
@@ -23,15 +25,18 @@ public class Truck extends Transport<DriverC> {
     @Override
     public void startMove() {
         System.out.println("Грузовик марки " + getBrand() + " начал двигаться ");
+        decreaseGasAndOil(15,15);
     }
 
     @Override
     public void finishMove() {
         System.out.println("Грузовик марки " + getBrand() + " закончил двигаться ");
+        decreaseGasAndOil(15,15);
     }
     @Override
     public void pitStop() {
         System.out.println("Пит-стоп у грузовика");
+        decreaseGasAndOil(15,15);
     }
 
     @Override
@@ -62,6 +67,11 @@ public class Truck extends Transport<DriverC> {
     @Override
     public Type getType() {
         return Type.TRUCK;
+    }
+
+    @Override
+    public void passDiagnostic(){
+        System.out.println("Диагностика пройдена успешно");
     }
 }
 

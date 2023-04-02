@@ -1,38 +1,47 @@
 package Transport;
 
-public class Bus extends Transport<DriverD> {
+import java.util.Random;
+
+public class Bus extends Transport<DriverD> implements Diagnosticable {
     private Size size;
     private Type type;
+
     public Bus(String brand,
                String model,
                double engineVolume,
                DriverD driver,
                Size size,
-               Type type) {
-        super(brand, model, engineVolume, driver);
+               Type type,
+               int gasTankBar,
+               int oilTankBar) {
+        super(brand, model, engineVolume, driver, gasTankBar, oilTankBar);
         setSize(size);
     }
 
     @Override
-    public void printType() { if (getSize() != null) {
-        System.out.println(Type.BUS);
-    } else System.out.println("Данных по транспортному средству недостаточно");
+    public void printType() {
+        if (getSize() != null) {
+            System.out.println(Type.BUS);
+        } else System.out.println("Данных по транспортному средству недостаточно");
 
     }
 
     @Override
     public void startMove() {
         System.out.println("Автобус марки " + getBrand() + " начал двигаться ");
+        decreaseGasAndOil(15, 15);
     }
 
     @Override
     public void finishMove() {
         System.out.println("Автобус марки " + getBrand() + " закончил двигаться ");
+        decreaseGasAndOil(15, 15);
     }
 
     @Override
     public void pitStop() {
         System.out.println("Пит-стоп у автобуса");
+        decreaseGasAndOil(15, 15);
     }
 
     @Override
@@ -52,9 +61,11 @@ public class Bus extends Transport<DriverD> {
         System.out.println("Максимальная скорость для автобуса " + maxSpeed);
 
     }
-    public Size getSize(){
+
+    public Size getSize() {
         return size;
     }
+
     public void setSize(Size size) {
         this.size = size;
     }
@@ -62,5 +73,15 @@ public class Bus extends Transport<DriverD> {
     @Override
     public Type getType() {
         return Type.BUS;
+    }
+
+    @Override
+    public void passDiagnostic() throws DiagnosticNotAllowedException {
+        Random rnd = new Random();
+        int r = rnd.nextInt(100);
+        if (r <= 10) {
+            throw new DiagnosticNotAllowedException();
+        } else System.out.println("Диагностика пройдена успешно");
+
     }
 }

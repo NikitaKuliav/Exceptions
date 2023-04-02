@@ -1,6 +1,6 @@
 package Transport;
 
-public class Auto extends Transport<DriverB> {
+public class Auto extends Transport<DriverB> implements Diagnosticable {
     private BodyType bodyType;
     private Type type;
     public Auto(String brand,
@@ -8,8 +8,10 @@ public class Auto extends Transport<DriverB> {
                 double engineVolume,
                 DriverB driver,
                 BodyType bodyType,
-                Type type) {
-        super(brand, model, engineVolume, driver);
+                Type type,
+                int gasTankBar,
+                int oilTankBar) {
+        super(brand, model, engineVolume, driver, gasTankBar, oilTankBar);
         setBodyType(bodyType);
     }
 
@@ -21,15 +23,18 @@ public class Auto extends Transport<DriverB> {
     @Override
     public void startMove() {
         System.out.println("Автомобиль марки " + getBrand() + " начал двигаться ");
+        decreaseGasAndOil(10,10);
     }
 
     @Override
     public void finishMove() {
         System.out.println("Автомобиль марки " + getBrand() + " закончил двигаться ");
+        decreaseGasAndOil(10,10);
     }
     @Override
     public void pitStop() {
         System.out.println("Пит-стоп у автомобиля");
+        decreaseGasAndOil(10,10);
     }
 
     @Override
@@ -59,5 +64,10 @@ public class Auto extends Transport<DriverB> {
     @Override
     public Type getType() {
         return type;
+    }
+
+    @Override
+    public void passDiagnostic(){
+        System.out.println("Диагностика пройдена успешно");
     }
 }
