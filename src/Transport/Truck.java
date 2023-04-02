@@ -1,6 +1,6 @@
 package Transport;
 
-public class Truck extends Transport<DriverC> {
+public class Truck extends Transport<DriverC> implements Diagnosticable {
     private LoadCapacity loadCapacity;
     private Type type;
     public Truck(String brand,
@@ -67,6 +67,11 @@ public class Truck extends Transport<DriverC> {
     @Override
     public Type getType() {
         return Type.TRUCK;
+    }
+
+    @Override
+    public void passDiagnostic(){
+        System.out.println("Диагностика пройдена успешно");
     }
 }
 

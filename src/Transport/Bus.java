@@ -1,8 +1,11 @@
 package Transport;
 
-public class Bus extends Transport<DriverD> {
+import java.util.Random;
+
+public class Bus extends Transport<DriverD> implements Diagnosticable {
     private Size size;
     private Type type;
+
     public Bus(String brand,
                String model,
                double engineVolume,
@@ -16,9 +19,10 @@ public class Bus extends Transport<DriverD> {
     }
 
     @Override
-    public void printType() { if (getSize() != null) {
-        System.out.println(Type.BUS);
-    } else System.out.println("Данных по транспортному средству недостаточно");
+    public void printType() {
+        if (getSize() != null) {
+            System.out.println(Type.BUS);
+        } else System.out.println("Данных по транспортному средству недостаточно");
 
     }
 
@@ -37,7 +41,7 @@ public class Bus extends Transport<DriverD> {
     @Override
     public void pitStop() {
         System.out.println("Пит-стоп у автобуса");
-        decreaseGasAndOil(15,15);
+        decreaseGasAndOil(15, 15);
     }
 
     @Override
@@ -57,9 +61,11 @@ public class Bus extends Transport<DriverD> {
         System.out.println("Максимальная скорость для автобуса " + maxSpeed);
 
     }
-    public Size getSize(){
+
+    public Size getSize() {
         return size;
     }
+
     public void setSize(Size size) {
         this.size = size;
     }
@@ -67,5 +73,18 @@ public class Bus extends Transport<DriverD> {
     @Override
     public Type getType() {
         return Type.BUS;
+    }
+
+    @Override
+    public void passDiagnostic() {
+        Random rnd = new Random();
+        int r = rnd.nextInt(100);
+        try {
+            if (r <= 10) {
+                throw new DiagnosticNotAllowedException();
+            } else System.out.println("Диагностика пройдена успешно");
+        } catch (DiagnosticNotAllowedException e) {
+            e.printStackTrace();
+        }
     }
 }

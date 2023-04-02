@@ -1,6 +1,6 @@
 package Transport;
 
-public class Auto extends Transport<DriverB> {
+public class Auto extends Transport<DriverB> implements Diagnosticable {
     private BodyType bodyType;
     private Type type;
     public Auto(String brand,
@@ -64,5 +64,10 @@ public class Auto extends Transport<DriverB> {
     @Override
     public Type getType() {
         return type;
+    }
+
+    @Override
+    public void passDiagnostic(){
+        System.out.println("Диагностика пройдена успешно");
     }
 }

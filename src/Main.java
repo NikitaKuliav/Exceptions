@@ -1,7 +1,7 @@
 import Transport.*;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args){
 
         for (int i =1; i<=4;i++){
             DriverB driverB = new DriverB("категории B  № " + i,
@@ -56,12 +56,16 @@ public class Main {
                 11,
                 11);
 //        Auto audi = new Auto("audi", "a8", 2.0, new DriverB("Alex", true, 7), null, Type.CAR);
-        mercedes.turnOnEngine(mercedes);
-        System.out.println(mercedes.getGasTankBar());
-        mercedes.addGas(100);
-        System.out.println(mercedes.getGasTankBar());
+//        mercedes.turnOnEngine(mercedes);
+//        System.out.println(mercedes.getGasTankBar());
+//        mercedes.startMove();
+//        mercedes.startMove();
+//        mercedes.startMove();
+//        mercedes.turnOnEngine(mercedes);
 
-
+//        mercedes.addGas(100);
+//        System.out.println(mercedes.getGasTankBar());
+        mercedes.passDiagnostic();
 
 
 //        System.out.println(mercedes.getBodyType());
@@ -81,8 +85,8 @@ public class Main {
                   150);
 //          ikarus.turnOnEngine(ikarus);
 //          ikarus.setOilTankBar(200);
-//        System.out.println(ikarus.getOilTankBar());
-
+//          System.out.println(ikarus.getOilTankBar());
+            ikarus.passDiagnostic();
 
 //          ikarus.printType();
 
