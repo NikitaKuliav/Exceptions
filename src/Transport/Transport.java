@@ -104,8 +104,8 @@ public abstract class Transport<T extends Driver> implements Competing {
         return oilTankBar;
     }
 
-    public void turnOnEngine(Transport object) {
-        try {
+    public void turnOnEngine(Transport object) throws EmptyGasTankException, NoOilException {
+
             if (object.getGasTankBar() > 0 && object.getOilTankBar() > 0) {
                 System.out.println("Двигатель заведён");
             } else if (object.getGasTankBar() <= 0) {
@@ -114,11 +114,6 @@ public abstract class Transport<T extends Driver> implements Competing {
                 throw new NoOilException("Недостаточно масла");
             }
 
-        } catch (EmptyGasTankException e) {
-            e.causeOfFailure(object);
-        } catch (NoOilException e) {
-            e.causeOfFailure(object);
-        }
     }
 
     @Override
